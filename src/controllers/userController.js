@@ -4,7 +4,6 @@ let users = [];
 module.exports = class userController {
   static async createUser(req, res) {
     const { cpf, email, password, name } = req.body;
-
     if (!cpf || !email || !password || !name) {
       return res.status(400).json({ error: "Todos os campos devem ser preenchidos" });
     } else if (isNaN(cpf) || cpf.length !== 11) {
@@ -22,15 +21,12 @@ module.exports = class userController {
     // Cria e adiciona novo usuário
     const newUser = { cpf, email, password, name };
     users.push(newUser);
-
     return res.status(201).json({ message: "Usuário criado com sucesso", user: newUser });
   }
-
 
   static async getAllUsers(req, res) {
     return res.status(200).json({ message: "Obtendo todos os usuários", users });
   }
-
 
   static async updateUser(req, res) {
     // desestrutura e recupera os dados enviados via corpo da requisição 
@@ -48,21 +44,14 @@ module.exports = class userController {
     }
     // Removendo o usuário do Array "Users"
     users.splice(userIndex, 1);
-
     return req.status(200).json({message: "Usuário Apagado"})
-
-
-
-
-
     // Atualiza os dados do usuário no Array "users"
     users[userIndex] = {cpf, email, password, name}
-
     return res.status(200).json({message: "Usuário atualizado", user:users[userIndex]})
   }
-
   static async deleteUser(req, res) {
    // Obtém o parametro "id" da requisição, que é o CPF do user a ser a sua 
    const userId = req.params.cpf
+  }
 }
-}
+// ======================================================================================== 
