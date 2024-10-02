@@ -1,5 +1,7 @@
 const express = require("express"); //Importa o módulo Express
 
+const testConnect = require("./db/testConnect");
+
 class AppController {
   //Define uma classe para organizar a lógica da aplicação
   constructor() {
